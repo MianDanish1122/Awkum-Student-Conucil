@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awkum Student Council</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="showView('home')">
+                <div class="nav-logo">🏆</div>
+                <span>Awkum Council</span>
+            </div>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item active" onclick="showView('home')">Home</li>
+                <li class="nav-item" onclick="showView('societies')">Societies</li>
+                <li class="nav-item" onclick="showView('join')">Join</li>
+                <li class="nav-item" onclick="showView('members')">Members</li>
+                <li class="nav-item" onclick="showView('complaints')">Complaints</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home View -->
+    <div id="home-view" class="view-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content fade-in">
+                <h1>Empowering Student <span class="hero-highlight">Leadership</span></h1>
+                <p>The official portal of the Awkum Student Council. Discover 18+ vibrant societies, connect with leaders, and shape the future of your campus experience.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showView('societies')">
+                        Explore Societies →
+                    </button>
+                    <button class="btn btn-secondary" onclick="showView('join')">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stats-container fade-in">
+                <div class="stat-item">
+                    <h3>18+</h3>
+                    <p>Societies</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5,000+</h3>
+                    <p>Active Members</p>
+                </div>
+                <div class="stat-item">
+                    <h3>120+</h3>
+                    <p>Annual Events</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15</h3>
+                    <p>Years of Legacy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Societies -->
+        <section class="container">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>Featured Societies</h2>
+                    <p>Discover groups that match your passion.</p>
+                </div>
+                <span class="view-all" onclick="showView('societies')">View All →</span>
+            </div>
+            <div class="cards-grid" id="featuredSocieties"></div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to make an impact?</h2>
+            <p>Join a society today and start your journey towards leadership, skill building, and lifelong friendships.</p>
+            <button class="btn btn-primary" onclick="showView('join')">Get Started</button>
+        </section>
+    </div>
+
+    <!-- Societies View -->
+    <div id="societies-view" class="view-content hidden">
+        <section class="container">
+            <div class="section-title" style="text-align: center; margin-bottom: 3rem;">
+                <h2>Societies Directory</h2>
+            </div>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search societies..." id="searchInput" oninput="filterSocieties()">
+            </div>
+            <div class="cards-grid" id="allSocieties"></div>
+        </section>
+    </div>
+
+    <!-- Society Detail View -->
+    <div id="detail-view" class="detail-view">
+        <!-- Dynamic content will be inserted here by JavaScript -->
+    </div>
+
+    <!-- Join View -->
+    <div id="join-view" class="view-content hidden">
+        <section class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Membership Application</h2>
+                    <p>Register to become an official member of a student society.</p>
+                </div>
+                <div id="joinFormContainer"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Members View -->
+    <div id="members-view" class="view-content hidden">
+        <section class="container">
+            <div class="form-header">
+                <h2>Leadership Directory</h2>
+                <p>Meet the dedicated individuals driving change and innovation across our university societies.</p>
+            </div>
+            <div class="members-grid" id="membersGrid"></div>
+        </section>
+    </div>
+
+    <!-- Complaints View -->
+    <div id="complaints-view" class="view-content hidden">
+        <section class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                    <div>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Student Feedback & Complaints</h2>
+                        <p style="color: #64748b; font-size: 1.125rem; margin-bottom: 2rem;">
+                            We value your voice. The Awkum Student Council is committed to addressing your concerns regarding society activities, campus life, or administrative issues.
+                        </p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 2rem;">
+                            <div style="display: flex; gap: 1rem;">
+                                <div style="flex-shrink: 0;">
+                                    <div style="width: 48px; height: 48px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">🛡️</div>
+                                </div>
+                                <div>
+                                    <h3 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Confidentiality Assured</h3>
+                                    <p style="color: #64748b;">Your identity is protected. We handle all complaints with strict confidentiality protocols.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <div style="flex-shrink: 0;">
+                                    <div style="width: 48px; height: 48px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">⚡</div>
+                                </div>
+                                <div>
+                                    <h3 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Quick Resolution</h3>
+                                    <p style="color: #64748b;">Our Grievance Committee meets weekly to review and resolve submitted issues efficiently.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="complaintsFormContainer"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🏆 Awkum Council</h3>
+                <p>The official representative body of students, fostering leadership, welfare, and extra-curricular excellence.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li onclick="showView('societies')">Societies</li>
+                    <li onclick="showView('join')">Apply for Membership</li>
+                    <li onclick="showView('complaints')">Submit Complaint</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li>Provost Office, Main Block</li>
+                    <li>awkum.council@edu.pk</li>
+                    <li>+92 123 456 7890</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Awkum Student Council. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
